@@ -1,0 +1,40 @@
+{
+  "name": "reactogen",
+  "version": "1.0.2",
+  "description": "Generate your react redux module (Duck Structure) by answering a few questions",
+  "main": "index.js",
+  "bin": {
+    "reactogen": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjangir/reactogen.git"
+  },
+  "keywords": [
+    "react",
+    "module",
+    "generator",
+    "react",
+    "redux",
+    "sagas",
+    "generate",
+    "react",
+    "redux"
+  ],
+  "author": "Manish Jangir <mjangir70@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mjangir/reactogen/issues"
+  },
+  "homepage": "https://github.com/mjangir/reactogen#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "change-case": "^3.0.2",
+    "figlet": "^1.2.0",
+    "minimist": "^1.2.0",
+    "node-plop": "^0.15.0"
+  }
+}

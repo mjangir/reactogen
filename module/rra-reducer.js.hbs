@@ -1,0 +1,49 @@
+/* eslint no-multi-spaces: 0 */
+import { handleActions }  from 'redux-actions';
+import * as actions       from './actions';
+import StateModel         from './state.model';
+
+const stateModel = new StateModel();
+// The Initial State
+const initialState = stateModel.getInitialState();
+
+export default handleActions({
+  {{#each constants}}
+  {{#ifvalue constantName value=""}}
+  {{else}}
+  // Handle {{constantName}}
+  [actions.{{actionName}}]: (state, action) => stateModel
+    .setCurrentState(state)
+    .{{actionName}}(action),
+
+  {{#if children.length}}
+  {{#each children}}
+  {{#if hasDone}}
+  // Fetch {{constantName}}
+  [actions.{{actionName}}]: {
+    next(state, action) {
+      return stateModel
+            .setCurrentState(state)
+            .{{../actionName}}Success(action);
+    },
+    throw(state, action) {
+      return stateModel
+            .setCurrentState(state)
+            .{{../actionName}}Failure(action);
+    },
+  },
+
+  {{else}}
+  // Handle {{constantName}}
+  [actions.{{actionName}}]: (state, action) => stateModel
+    .setCurrentState(state)
+    .{{actionName}}(action),
+
+  {{/if}}
+  {{/each}}
+  {{/if}}
+  {{/ifvalue}}
+  {{/each}}
+  // Initialize State
+  [actions.initializeState]: () => initialState,
+}, initialState);

@@ -1,0 +1,66 @@
+/* eslint no-multi-spaces: 0 */
+{{#if isImmutable}}
+import { fromJS, Map, List }  from 'immutable';
+{{/if}}
+import * as constants         from './constants';
+import StateModel             from './state.model';
+
+const stateModel = new StateModel();
+// The Initial State
+const initialState = stateModel.getInitialState();
+
+/**
+ * {{properCase moduleName}} Reducer
+ *
+ * @param {any} [state=initialState]
+ * @param {any} action
+ * @returns
+ */
+function {{camelCase moduleName}}Reducer(state = initialState, action) {
+  switch (action.type) {
+    {{#each constants}}
+    {{#ifvalue constantName value=""}}
+    {{else}}
+    // Handle {{constantName}}
+    case constants.{{constantName}}:
+      return stateModel
+            .setCurrentState(state)
+            .{{actionName}}(action);
+
+    {{#if children.length}}
+    {{#each children}}
+    {{#if hasDone}}
+    // Fetch {{constantName}}
+    case constants.{{constantName}}:
+    if (action.error) {
+      return stateModel
+            .setCurrentState(state)
+            .{{../actionName}}Failure(action);
+    } else {
+      return stateModel
+            .setCurrentState(state)
+            .{{../actionName}}Success(action);
+    }
+    
+    {{else}}
+    // Handle {{constantName}}
+    case constants.{{constantName}}:
+      return stateModel
+            .setCurrentState(state)
+            .{{actionName}}(action);
+
+    {{/if}}
+    {{/each}}
+    {{/if}}
+    {{/ifvalue}}
+    {{/each}}
+    // Handle INITIALIZE_STATE
+    case constants.INITIALIZE_STATE:
+      return initialState;
+
+    default:
+      return state;
+  }
+}
+
+export default {{camelCase moduleName}}Reducer;

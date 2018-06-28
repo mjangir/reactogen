@@ -1,0 +1,56 @@
+import * as constants from './constants';
+
+/**
+ * Initialize State
+ *
+ * @export
+ * @returns {Object}
+ */
+export function initializeState(payload, meta) {
+  return {
+    type: constants.INITIALIZE_STATE,
+    payload,
+    meta,
+  };
+}
+
+{{#each constants}}
+{{#ifvalue actionName value=""}}
+{{else}}
+/**
+ * Action Creator {{actionName}}
+ *
+ * @export
+ * @returns {Object}
+ */
+export function {{actionName}}(payload, meta) {
+  return {
+    type: constants.{{constantName}},
+    payload,
+    meta,
+  };
+}
+
+{{#if children.length}}
+{{#each children}}
+/**
+ * Action Creator {{actionName}}
+ *
+ * @export
+ * @returns {Object}
+ */
+export function {{actionName}}(payload, meta) {
+  return {
+    type: constants.{{constantName}},
+    payload,
+    meta,
+    {{#if error}}
+    error: true,
+    {{/if}}
+  };
+}
+
+{{/each}}
+{{/if}}
+{{/ifvalue}}
+{{/each}}

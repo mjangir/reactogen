@@ -1,0 +1,14 @@
+export const INITIAL_STATE = '@{{constantCase moduleName}}/INITIAL_STATE';
+
+{{#each constants}}
+{{#ifvalue constantName value=""}}
+
+{{else}}
+export const {{constantName}} = '@{{constantCase ../moduleName}}/{{constantName}}';
+{{#if children.length}}
+{{#each children}}
+export const {{constantName}} = '@{{constantCase ../../moduleName}}/{{constantName}}';
+{{/each}}
+{{/if}}
+{{/ifvalue}}
+{{/each}}

@@ -1,0 +1,17 @@
+import { createAction } from 'redux-actions';
+import * as constants from './constants';
+
+export const initializeState = createAction(constants.INITIALIZE_STATE, (payload) => payload, (payload, meta) => meta);
+
+{{#each constants}}
+{{#ifvalue constantName value=""}}
+
+{{else}}
+export const {{actionName}} = createAction(constants.{{constantName}}, (payload) => payload, (payload, meta) => meta);
+{{#if children.length}}
+{{#each children}}
+export const {{actionName}} = createAction(constants.{{constantName}}, (payload) => payload, (payload, meta) => meta);
+{{/each}}
+{{/if}}
+{{/ifvalue}}
+{{/each}}

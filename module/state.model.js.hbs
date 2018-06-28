@@ -1,0 +1,92 @@
+{{#if isImmutable}}
+import { fromJS } from 'immutable';
+
+{{/if}}
+class StateModel {
+  state;
+
+  /**
+   * Get Initial State
+   *
+   * @returns
+   * @memberof StateModel
+   */
+  getInitialState() {
+    {{#if isImmutable}}
+    return fromJS({{stateObject}});
+    {{else}}
+    return {{stateObject}};
+    {{/if}}
+  }
+
+  /**
+   * Set Current State
+   *
+   * @param {*} state
+   * @returns
+   * @memberof StateModel
+   */
+  setCurrentState(state) {
+    this.state = state;
+    return this;
+  }
+
+  {{#each constants}}
+  {{#ifvalue constantName value=""}}
+  {{else}}
+  /**
+  * Handle {{actionName}}
+  *
+  * @param {*} state
+  * @returns
+  * @memberof StateModel
+  */
+  {{actionName}}(action) {
+    return this.state;
+  }
+
+  {{#if children.length}}
+  {{#each children}}
+  {{#if hasDone}}
+  /**
+  * Handle {{../actionName}}Success
+  *
+  * @param {*} state
+  * @returns
+  * @memberof StateModel
+  */
+  {{../actionName}}Success(action) {
+    return this.state;
+  }
+
+  /**
+  * Handle {{../actionName}}Failure
+  *
+  * @param {*} state
+  * @returns
+  * @memberof StateModel
+  */
+  {{../actionName}}Failure(action) {
+    return this.state;
+  }
+
+  {{else}}
+  /**
+  * Handle {{actionName}}
+  *
+  * @param {*} state
+  * @returns
+  * @memberof StateModel
+  */
+  {{actionName}}(action) {
+    return this.state;
+  }
+
+  {{/if}}
+  {{/each}}
+  {{/if}}
+  {{/ifvalue}}
+  {{/each}}
+}
+
+export default StateModel;

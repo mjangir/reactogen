@@ -1,0 +1,16 @@
+import { createSelector } from 'reselect';
+
+const node = (state) => state.get('{{camelCase moduleName}}');
+{{#each stateObject}}
+{{#if isImmutable}}
+const get{{properCase @key}} = () => createSelector(node, (s) => s.get('{{@key}}'));
+{{else}}
+const get{{properCase @key}} = () => createSelector(node, (s) => s.{{@key}});
+{{/if}}
+{{/each}}
+
+export {
+  {{#each stateObject}}
+  get{{properCase @key}},
+  {{/each}}
+};
