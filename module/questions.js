@@ -17,13 +17,13 @@ module.exports = [
   {
     name: 'isReactReduxActions',
     type: 'confirm',
-    message: 'Are you using React Redux Actions (Recommended)?',
+    message: 'Are you using Redux Actions (Recommended)?',
     validate: validations.isRequired
   },
   {
     name: 'constants',
     type: 'editor',
-    message: 'Please enter your action names in camel or uppercase line by line',
+    message: 'Please enter your constant names in camel or uppercase line by line',
     filter: function(constants) {
       const consts = [];
       return constants.split("\r\n").map(function(constant) {
