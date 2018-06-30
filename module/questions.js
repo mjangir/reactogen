@@ -72,13 +72,6 @@ module.exports = [
   {
     name: 'stateObject',
     type: 'editor',
-    message: 'Please enter your state JSON schema',
-    filter: function(value) {
-      try {
-        return JSON.parse(value);
-      } catch (error) {
-        return {};
-      }
-    }
+    message: 'Please enter your state JSON schema'
   },
 ]

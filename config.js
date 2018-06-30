@@ -11,11 +11,5 @@ module.exports = function (plop) {
     } else {
       return options.inverse(this);
     }
-  })
-  plop.addHelper('checklength', function (v1, v2, options) {
-    if (v1.length>v2) {
-      return options.fn(this);
-    }
-    return options.inverse(this);
-  })
+  });
 };

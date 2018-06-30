@@ -13,9 +13,9 @@ class StateModel {
    */
   getInitialState() {
     {{#if isImmutable}}
-    return fromJS({{stateObject}});
+    return fromJS({{{stateObject}}});
     {{else}}
-    return {{stateObject}};
+    return {{{stateObject}}};
     {{/if}}
   }
 

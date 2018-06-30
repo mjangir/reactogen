@@ -1,12 +1,14 @@
 const path        = require('path');
 const questions   = require('./questions');
-const MODULE_ROOT = require('../utils').MODULE_ROOT;
+const utils       = require('../utils');
+const MODULE_ROOT = utils.MODULE_ROOT;
 const CWD         = process.cwd();
 
 module.exports = {
   description: 'Generate React Redux Module',
   prompts: questions,
   actions: function (data) {
+    data.stateJSON = utils.makeValidJson(data.stateObject);
     const actions = [];
     actions.push({
       type: 'add',

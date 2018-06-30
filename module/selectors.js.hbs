@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 const node = (state) => state.get('{{camelCase moduleName}}');
-{{#each stateObject}}
+{{#each stateJSON}}
 {{#if isImmutable}}
 const get{{properCase @key}} = () => createSelector(node, (s) => s.get('{{@key}}'));
 {{else}}
@@ -10,7 +10,7 @@ const get{{properCase @key}} = () => createSelector(node, (s) => s.{{@key}});
 {{/each}}
 
 export {
-  {{#each stateObject}}
+  {{#each stateJSON}}
   get{{properCase @key}},
   {{/each}}
 };
