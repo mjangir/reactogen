@@ -1,6 +1,6 @@
 ## Reactogen
 Reactogen is CLI tool to create your redux (duck structured) modules quickly by answering a few prompts. Though the project has been started for multipurpose but currently it supports only creating react redux modules.
-![Demo](https://raw.githubusercontent.com/mjangir/reactogen/readme.gif)
+![Demo](https://raw.githubusercontent.com/mjangir/reactogen/master/readme.gif)
 #### How To Install
 You can install reactogen globally or locally in your project by running the following command:
 `npm install reactogen -g`
